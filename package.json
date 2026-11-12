@@ -1,0 +1,12 @@
+{
+  "name": "info300-infrastructure-decision-tool",
+  "version": "1.0.0",
+  "description": "INFO 300 Node.js subnet and compute environment decision tool",
+  "main": "infrastructure_tool.js",
+  "scripts": {
+    "start": "node infrastructure_tool.js"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
