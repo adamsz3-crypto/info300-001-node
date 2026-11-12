@@ -67,7 +67,17 @@ function askYesNo(prompt) {
     console.log('Please enter "yes" or "no".');
   }
 }
+function cidrToSubnetMask(prefix) {
+  const mask = [];
 
+  for (let i = 0; i < 4; i++) {
+    const bits = Math.min(8, Math.max(0, prefix - i * 8));
+    const octet = bits === 0 ? 0 : 256 - (2 ** (8 - bits));
+    mask.push(octet);
+  }
+
+  return mask.join(".");
+}
 function subnetHostChecker() {
   console.log("\n========== SUBNET HOST CHECKER ==========");
 
@@ -89,6 +99,7 @@ function subnetHostChecker() {
   }
 
   console.log("VPC/Subnet consistency: CONSISTENT");
+  console.log(`Subnet mask: ${cidrToSubnetMask(subnetPrefix)}`);
   console.log(`The /${subnetPrefix} subnet is within the size allowed by a /${vpcPrefix} VPC.`);
 
   const totalAddresses = 2 ** (32 - subnetPrefix);
